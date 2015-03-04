@@ -8,8 +8,9 @@
 execute pathogen#infect()
 
 syntax on
-filetype indent on
-filetype plugin on
+if has("autocmd")
+   filetype plugin indent on
+endif
 
 "
 " local adjustments
