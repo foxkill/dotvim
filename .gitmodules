@@ -4,3 +4,6 @@
 [submodule "bundle/colors-smyck"]
 	path = bundle/colors-smyck
 	url = https://github.com/slindberg/vim-colors-smyck.git
+[submodule "bundle/vim-airline"]
+	path = bundle/vim-airline
+	url = https://github.com/bling/vim-airline.git
