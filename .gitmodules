@@ -1,3 +1,6 @@
 [submodule "bundle/ctrlp"]
 	path = bundle/ctrlp
 	url = https://github.com/kien/ctrlp.vim.git
+[submodule "bundle/colors-smyck"]
+	path = bundle/colors-smyck
+	url = https://github.com/slindberg/vim-colors-smyck.git
