@@ -1,3 +1,5 @@
+" vim: set foldmarker={,} foldlevel=0 foldmethod=marker:
+
 "
 " local settings Copyright (c) 2015 Stefan Martin
 "
@@ -7,41 +9,61 @@
 "
 set t_Co=256
 
-" CS:SOLARIZED
+" CS:SOLARIZED {
 "let g:solarized_termcolors=256
 "colorscheme solarized
 "set background=light
+"  }
 
-" CS:SMYCK
+
+" CS:SMYCK {
 colorscheme smyck
+" }
 
 "
 " plugins
 "
 
+" AIRLINE PLUGIN {
 "
-" AIRLINE PLUGIN
-" 
-" git clone https://github.com/bling/vim-airline ~/.vim/bundle/vim-airlineset 
+" git clone https://github.com/bling/vim-airline ~/.vim/bundle/vim-airline
 "
-let g:airline_powerline_fonts = 1
+let g:airline_powerline_fonts            = 1
 let g:airline#extensions#tabline#enabled = 1
+let g:Powerline_symbols                  = 'fancy'
+let g:airline_theme                      = 'powerlineish'
+"let g:airline_left_sep                   = ''
+"let g:airline_right_sep                  = ''
+"let g:airline_section_z                  = ''
+" }
 
-" CTRLP PLUGIN
+
+" CTRLP PLUGIN {
 " $ cd ~/.vim/bundle
 " $ git clone https://github.com/kien/ctrlp.vim.git
 
-let g:ctrlp_map='<c-p>'
-let g:ctrlp_cmd='CtrlP'
-let g:ctrlp_cache_dir = $HOME . '/.cache/ctrlp'
+let g:ctrlp_map           = '<c-p>'
+let g:ctrlp_cmd           = 'CtrlP'
+let g:ctrlp_use_caching   = 1
+let g:ctrlp_cache_dir     = $HOME . '/.cache/ctrlp'
 let g:ctrlp_custom_ignore = 'tmp$\|\.git$\|\.hg$\|\.svn$\|.rvm$|.bundle$\|vendor|node_modules'
-let g:ctrlp_by_filename = 1
+let g:ctrlp_by_filename   = 1
+
+nnoremap <leader>bt :CtrlPBufTag<CR>
 
 if executable('ag')
     "set grepprg=ag\ --nogroup \--nocolor
     let g:ctrlp_user_command = 'ag --files-with-matches -g "" --ignore "\.git$|\.svn$" %s'
     "let g:ctrlp_use_caching = 0
 endif
+" }
+
+" TAGBAR PLUGIN {
+" if has('tagbar')
+nnoremap <leader>tt :TagbarToggle<CR>
+" endif
+"}
+
 
 "highlight ColorColumn ctermbg=magenta           "set to whatever you like
 "call matchadd('ColorColumn', '\%81v', 100)      "set column nr
