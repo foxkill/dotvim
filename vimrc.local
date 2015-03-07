@@ -64,6 +64,10 @@ nnoremap <leader>tt :TagbarToggle<CR>
 " endif
 "}
 
+" AG PLUGIN {
+" https://github.com/rking/ag.vim.git bundle/ag
 
+
+" }
 "highlight ColorColumn ctermbg=magenta           "set to whatever you like
 "call matchadd('ColorColumn', '\%81v', 100)      "set column nr
