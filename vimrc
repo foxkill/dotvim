@@ -20,6 +20,11 @@ set modeline
 set modelines=5
 
 "
+" Key mappings
+"
+let mapleader = ","
+nnoremap ü <C-]>
+"
 " local adjustments
 "
 source ~/.vimrc.local
@@ -68,11 +73,6 @@ set noswapfile
 " set tags=./tags;/,$HOME/vimtags
 set wildignore+=*/tmp/*,*.so,*.swp,*.zip,*/vendor/*,*/\.git/*,*/\.svn/*,*/node_modules/*
 
-"
-" Key mappings
-"
-let mapleader = ","
-nnoremap ü <C-]>
 
 "
 " vimrc
