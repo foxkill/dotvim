@@ -9,20 +9,19 @@
 "
 set t_Co=256
 
-" CS:SOLARIZED {
+"
+" plugin settings
+"
+
+" COLORSCHEME:solarized {
 "let g:solarized_termcolors=256
 "colorscheme solarized
 "set background=light
 "  }
 
-
-" CS:SMYCK {
+" COLORSCHEME:smyck { 
 colorscheme smyck
 " }
-
-"
-" plugins
-"
 
 " AIRLINE PLUGIN {
 "
@@ -30,13 +29,12 @@ colorscheme smyck
 "
 let g:airline_powerline_fonts            = 1
 let g:airline#extensions#tabline#enabled = 1
-let g:Powerline_symbols                  = 'fancy'
 let g:airline_theme                      = 'powerlineish'
+let g:Powerline_symbols                  = 'fancy'
 "let g:airline_left_sep                   = ''
 "let g:airline_right_sep                  = ''
 "let g:airline_section_z                  = ''
 " }
-
 
 " CTRLP PLUGIN {
 " $ cd ~/.vim/bundle
@@ -47,9 +45,9 @@ let g:ctrlp_cmd           = 'CtrlP'
 let g:ctrlp_use_caching   = 1
 let g:ctrlp_cache_dir     = $HOME . '/.cache/ctrlp'
 let g:ctrlp_custom_ignore = 'tmp$\|\.git$\|\.hg$\|\.svn$\|.rvm$|.bundle$\|vendor|node_modules'
-let g:ctrlp_by_filename   = 1
+"let g:ctrlp_by_filename   = 1
 
-nnoremap <leader>bt :CtrlPBufTag<CR>
+nnoremap <leader>ct :CtrlPBufTag<CR>
 
 if executable('ag')
     "set grepprg=ag\ --nogroup \--nocolor
@@ -66,8 +64,21 @@ nnoremap <leader>tt :TagbarToggle<CR>
 
 " AG PLUGIN {
 " https://github.com/rking/ag.vim.git bundle/ag
+nnoremap <leader>a :Ag!<SPACE>
+ " }
 
+" SYNTASTIC PLUGIN {
+" git clone https://github.com/scrooloose/syntastic.git 
 
+"let g:syntastic_php_checkers = ['php', 'phpcs', 'phpmd']
+set statusline+=%#warningmsg#
+set statusline+=%{SyntasticStatuslineFlag()}
+set statusline+=%*
+
+let g:syntastic_always_populate_loc_list = 1
+let g:syntastic_auto_loc_list = 1
+let g:syntastic_check_on_open = 1
+let g:syntastic_check_on_wq = 0
 " }
 "highlight ColorColumn ctermbg=magenta           "set to whatever you like
 "call matchadd('ColorColumn', '\%81v', 100)      "set column nr
