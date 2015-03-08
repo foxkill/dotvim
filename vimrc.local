@@ -7,8 +7,11 @@
 "
 " color settings
 "
-set t_Co=256
 
+"hi CursorLineNr term=bold ctermfg=Yellow gui=bold guifg=Yellow
+
+
+set t_Co=256
 "
 " plugin settings
 "
@@ -82,6 +85,12 @@ let g:syntastic_auto_loc_list = 1
 let g:syntastic_check_on_open = 0
 let g:syntastic_check_on_wq = 0
 " }
+
+"hi CursorLineNR cterm=bold
+"augroup CLNRSet
+"    autocmd! ColorScheme * hi CursorLineNR cterm=bold
+"augroup END
+
 
 highlight ColorColumn ctermbg=232
 execute "set colorcolumn=" . join(range(120,335), ',')
