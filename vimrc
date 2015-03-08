@@ -24,6 +24,7 @@ set modelines=5
 "
 let mapleader = ","
 nnoremap ü <C-]>
+
 "
 " local adjustments
 "
@@ -43,8 +44,15 @@ set laststatus=2
 "
 set number
 set listchars=tab:>\ ,trail:.
-set ttyfast                             " faster redrawing
 set wildmenu                            " set improved wildcard menu
+
+"
+" performance stuff
+"
+set ttyfast                             " faster redrawing
+set lazyredraw
+set synmaxcol=128
+set scrolljump=5
 
 "
 " basic settings
@@ -73,9 +81,8 @@ set noswapfile
 " set tags=./tags;/,$HOME/vimtags
 set wildignore+=*/tmp/*,*.so,*.swp,*.zip,*/vendor/*,*/\.git/*,*/\.svn/*,*/node_modules/*
 
-
 "
-" vimrc
+" key mappings {
 "
 
 " edit .vimrc quickly
@@ -86,6 +93,8 @@ nnoremap <leader>w :w!<CR>
 
 "easy mapping to normal mode
 imap jj <ESC>
+
+"}
 
 "
 " search stuff
