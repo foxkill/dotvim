@@ -28,6 +28,7 @@ nnoremap ü <C-]>
 "
 " local adjustments
 "
+" if fileisreadable()
 source ~/.vimrc.local
 
 "
@@ -35,16 +36,19 @@ source ~/.vimrc.local
 "
 " set omnifunc=syntaxcomplete#Complete
 au FileType php set omnifunc=phpcomplete#CompletePHP
+
 set encoding=utf-8
-set laststatus=2
 " set rtp+=/usr/lib/python3.4/site-packages/powerline/bindings/vim
 
 "
 " visual stuff
 "
 set number
+"highlight LineNr term=bold cterm=NONE ctermfg=DarkGrey ctermbg=NONE gui=NONE guifg=DarkGrey guibg=NONE
+
 set listchars=tab:>\ ,trail:.
 set wildmenu                            " set improved wildcard menu
+set laststatus=2
 
 "
 " performance stuff

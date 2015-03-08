@@ -19,7 +19,7 @@ set t_Co=256
 "set background=light
 "  }
 
-" COLORSCHEME:smyck { 
+" COLORSCHEME:smyck {
 colorscheme smyck
 " }
 
@@ -45,7 +45,7 @@ let g:ctrlp_cmd           = 'CtrlP'
 let g:ctrlp_use_caching   = 1
 let g:ctrlp_cache_dir     = $HOME . '/.cache/ctrlp'
 let g:ctrlp_custom_ignore = 'tmp$\|\.git$\|\.hg$\|\.svn$\|.rvm$|.bundle$\|vendor|node_modules'
-"let g:ctrlp_by_filename   = 1
+let g:ctrlp_by_mru        = 1
 
 nnoremap <leader>ct :CtrlPBufTag<CR>
 
@@ -64,21 +64,27 @@ nnoremap <leader>tt :TagbarToggle<CR>
 
 " AG PLUGIN {
 " https://github.com/rking/ag.vim.git bundle/ag
+let g:ag_prg="ag --vimgrep --smart-case"
 nnoremap <leader>a :Ag!<SPACE>
- " }
+" }
 
 " SYNTASTIC PLUGIN {
-" git clone https://github.com/scrooloose/syntastic.git 
+" git clone https://github.com/scrooloose/syntastic.git
 
-"let g:syntastic_php_checkers = ['php', 'phpcs', 'phpmd']
+let g:syntastic_php_checkers = ['php', 'phpcs', 'phpmd']
 set statusline+=%#warningmsg#
 set statusline+=%{SyntasticStatuslineFlag()}
 set statusline+=%*
 
+let g:syntastic_php_phpcs_args="--standard=Zend"
 let g:syntastic_always_populate_loc_list = 1
 let g:syntastic_auto_loc_list = 1
-let g:syntastic_check_on_open = 1
+let g:syntastic_check_on_open = 0
 let g:syntastic_check_on_wq = 0
 " }
-"highlight ColorColumn ctermbg=magenta           "set to whatever you like
-"call matchadd('ColorColumn', '\%81v', 100)      "set column nr
+
+highlight ColorColumn ctermbg=232
+execute "set colorcolumn=" . join(range(120,335), ',')
+" call matchadd('ColorColumn', '\%81v', 100)
+
+
