@@ -46,7 +46,7 @@ set encoding=utf-8
 set number
 "highlight LineNr term=bold cterm=NONE ctermfg=DarkGrey ctermbg=NONE gui=NONE guifg=DarkGrey guibg=NONE
 
-set listchars=tab:>\ ,trail:.
+set listchars=tab:>\ ,trail:.,eol:¬
 set wildmenu                            " set improved wildcard menu
 set laststatus=2
 
