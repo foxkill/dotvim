@@ -32,7 +32,8 @@ colorscheme smyck
 "
 let g:airline_powerline_fonts            = 1
 let g:airline#extensions#tabline#enabled = 1
-let g:airline_theme                      = 'powerlineish'
+let g:airline#extensions#tabline#formatter = 'unique_tail'
+let g:airline_theme                      = 'badwolf'
 let g:Powerline_symbols                  = 'fancy'
 "let g:airline_left_sep                   = ''
 "let g:airline_right_sep                  = ''
@@ -60,8 +61,8 @@ endif
 " }
 
 " TAGBAR PLUGIN {
-" if has('tagbar')
-nnoremap <leader>tt :TagbarToggle<CR>
+    " if has('tagbar')
+    nnoremap <leader>tt :TagbarToggle<CR><C-w><C-l>
 " endif
 "}
 
