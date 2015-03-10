@@ -28,6 +28,7 @@
 [submodule "bundle/tcomment"]
 	path = bundle/tcomment
 	url = https://github.com/vim-scripts/tComment.git
+    ignore = dirty
 [submodule "bundle/tagbar-phpctags"]
 	path = bundle/tagbar-phpctags
 	url = https://github.com/vim-php/tagbar-phpctags.vim.git
