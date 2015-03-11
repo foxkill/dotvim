@@ -82,8 +82,13 @@ set history=1000
 " files and directories
 "
 set noswapfile
+
 " set tags=./tags;/,$HOME/vimtags
-set wildignore+=*/tmp/*,*.so,*.swp,*.zip,*/vendor/*,*/\.git/*,*/\.svn/*,*/node_modules/*
+
+set wildignore+=*/tmp/*,*.swp
+set wildignore+=*.so,*.zip
+set wildignore+=*/vendor/*,*/node_modules/*
+set wildignore+=*/\.svn/*,*/\.git/*
 
 "
 " key mappings {
@@ -97,14 +102,15 @@ nnoremap <leader>w :w!<CR>
 
 "easy mapping to normal mode
 imap jj <ESC>
-
+imap dd <ESC>dd
+imap DD <ESC>dd
 "}
 
 "
 " search stuff
 " {
 
-highlight search cterm=underline
+" highlight search cterm=underline
 " remove search results
 command! H let @/=""
 
