@@ -36,6 +36,8 @@ source ~/.vimrc.local
 "
 " set omnifunc=syntaxcomplete#Complete
 au FileType php set omnifunc=phpcomplete#CompletePHP
+set complete=.,w,b,u,t
+set completeopt=longest,menuone,preview
 
 set encoding=utf-8
 " set rtp+=/usr/lib/python3.4/site-packages/powerline/bindings/vim
@@ -82,6 +84,8 @@ set history=1000
 " files and directories
 "
 set noswapfile
+set binary
+set noeol
 
 " set tags=./tags;/,$HOME/vimtags
 
