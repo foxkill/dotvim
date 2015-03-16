@@ -55,7 +55,7 @@ nnoremap <leader>ct :CtrlPBufTag<CR>
 
 if executable('ag')
     "set grepprg=ag\ --nogroup \--nocolor
-    let g:ctrlp_user_command = 'ag --files-with-matches -g "" --ignore "\.git$|\.svn$" %s'
+    "let g:ctrlp_user_command = 'ag --files-with-matches -g "" --ignore "\.git$|\.svn$" %s'
     "let g:ctrlp_use_caching = 0
 endif
 " }
@@ -80,11 +80,12 @@ set statusline+=%#warningmsg#
 set statusline+=%{SyntasticStatuslineFlag()}
 set statusline+=%*
 
-let g:syntastic_php_phpcs_args="--standard=Zend"
-let g:syntastic_always_populate_loc_list = 1
-let g:syntastic_auto_loc_list = 1
-let g:syntastic_check_on_open = 0
-let g:syntastic_check_on_wq = 0
+let g:syntastic_php_phpcs_args           = "--standard = Zend"
+let g:syntastic_always_populate_loc_list = 0
+let g:syntastic_auto_loc_list            = 0
+let g:syntastic_check_on_open            = 0
+let g:syntastic_check_on_wq              = 0
+let g:syntastic_auto_jump                = 1
 " }
 
 "hi CursorLineNR cterm=bold
