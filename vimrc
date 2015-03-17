@@ -34,8 +34,8 @@ source ~/.vimrc.local
 "
 " omnicomplete
 "
-" set omnifunc=syntaxcomplete#Complete
-au FileType php set omnifunc=phpcomplete#CompletePHP
+set omnifunc=syntaxcomplete#Complete
+"au FileType php set omnifunc=phpcomplete#CompletePHP
 set complete=.,w,b,u,t
 set completeopt=longest,menuone,preview
 
@@ -84,8 +84,8 @@ set history=1000
 " files and directories
 "
 set noswapfile
-set binary
-set noeol
+"set binary
+"set noeol
 
 " set tags=./tags;/,$HOME/vimtags
 
