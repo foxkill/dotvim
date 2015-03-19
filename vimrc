@@ -88,6 +88,7 @@ set noswapfile
 "set noeol
 
 " set tags=./tags;/,$HOME/vimtags
+set cscopetag
 
 set wildignore+=*/tmp/*,*.swp
 set wildignore+=*.so,*.zip
