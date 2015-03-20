@@ -57,7 +57,7 @@ set laststatus=2
 "
 set ttyfast                             " faster redrawing
 set lazyredraw
-set synmaxcol=128
+set synmaxcol=512
 set scrolljump=5
 
 "
