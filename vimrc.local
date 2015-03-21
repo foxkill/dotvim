@@ -169,5 +169,3 @@ let g:syntastic_auto_jump                = 1
 highlight ColorColumn ctermbg=LightBlue
 "" execute set colorcolumn= . join(range(120,335), ',')
 " call matchadd('ColorColumn', '\%81v', 100)
-
-
