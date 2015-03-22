@@ -44,3 +44,6 @@
 [submodule "bundle/svnj"]
 	path = bundle/svnj
 	url = https://github.com/juneedahamed/svnj.vim.git
+[submodule "bundle/vim-phpfmt"]
+	path = bundle/vim-phpfmt
+	url = https://github.com/dericofilho/vim-phpfmt.git
