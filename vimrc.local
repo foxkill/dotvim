@@ -160,12 +160,11 @@ let g:syntastic_check_on_wq              = 0
 let g:syntastic_auto_jump                = 1
 " }
 
-
 " VIM-PHPFMT PLUGIN {{{
 " git clone https://github.com/dericofilho/vim-phpfmt.git
 
 let g:phpfmt_on_save = 0
-let g:phpfmt_psr2    = 1
+let g:phpfmt_psr2=1
 
 " }}}l
 
