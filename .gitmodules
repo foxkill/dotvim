@@ -41,3 +41,6 @@
 [submodule "bundle/neocomplete"]
 	path = bundle/neocomplete
 	url = https://github.com/Shougo/neocomplete.vim.git
+[submodule "bundle/svnj"]
+	path = bundle/svnj
+	url = https://github.com/juneedahamed/svnj.vim.git
