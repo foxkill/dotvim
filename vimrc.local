@@ -52,7 +52,7 @@ if has ("cscope")
     elseif $CSCOPE_DB != ""
         cs add $CSCOPE_DB
     endif
-  
+
     " The following maps all invoke one of the following cscope search types:
     " (note: <C-@> = <C-Space> = Ctrl+Space
     "
@@ -152,12 +152,16 @@ set statusline+=%#warningmsg#
 set statusline+=%{SyntasticStatuslineFlag()}
 set statusline+=%*
 
-let g:syntastic_php_phpcs_args           = "--standard=Zend"
+let g:syntastic_php_phpcs_args           = "--standard = Zend"
 let g:syntastic_always_populate_loc_list = 0
 let g:syntastic_auto_loc_list            = 0
 let g:syntastic_check_on_open            = 0
 let g:syntastic_check_on_wq              = 0
 let g:syntastic_auto_jump                = 1
+let g:syntastic_error_symbol             = "✗"
+let g:syntastic_style_error_symbol       = "✗"
+let g:syntastic_warning_symbol           = "⚠"
+let g:syntastic_style_warning_symbol     = "⚠"
 " }
 
 " VIM-PHPFMT PLUGIN {{{
@@ -165,7 +169,8 @@ let g:syntastic_auto_jump                = 1
 
 let g:phpfmt_on_save = 0
 let g:phpfmt_psr2=1
-
+" disable it until it works correctly
+let g:phpfmt_enable_default_mapping = 0
 " }}}l
 
 "hi CursorLineNR cterm=bold
