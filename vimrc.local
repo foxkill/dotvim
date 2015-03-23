@@ -173,6 +173,16 @@ let g:phpfmt_psr2=1
 let g:phpfmt_enable_default_mapping = 0
 " }}}l
 
+"
+" VIM-PHP-CS-FIXER PLUGIN {{{
+" 
+if !executeable('~/php-cs-fixer')
+    let g:php_cs_fixer_path = "~/.composer/vendor/bin/php-cs-fixer"
+end
+
+let g:php_cs_fixer_verbose = 1
+" }}}
+
 "hi CursorLineNR cterm=bold
 "augroup CLNRSet
 "    autocmd! ColorScheme * hi CursorLineNR cterm=bold
