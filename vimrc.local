@@ -183,6 +183,12 @@ end
 let g:php_cs_fixer_verbose = 1
 " }}}
 
+" NEO-COMPLETE PLUGIN {{{
+"
+let g:neocomplete#enable_at_startup = 1
+
+" }}}
+
 "hi CursorLineNR cterm=bold
 "augroup CLNRSet
 "    autocmd! ColorScheme * hi CursorLineNR cterm=bold
