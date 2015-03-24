@@ -173,7 +173,6 @@ let g:phpfmt_psr2=1
 let g:phpfmt_enable_default_mapping = 0
 " }}}l
 
-"
 " VIM-PHP-CS-FIXER PLUGIN {{{
 " 
 if !executable('~/php-cs-fixer')
@@ -186,6 +185,21 @@ let g:php_cs_fixer_verbose = 1
 " NEO-COMPLETE PLUGIN {{{
 "
 let g:neocomplete#enable_at_startup = 1
+
+" }}}
+
+" SVNJ PLUGIN {{{
+"
+let g:svnj_allow_leader_mappings = 1
+
+" }}}
+
+" ULTISNIPS PLUGIN {{{
+
+let g:UltiSnipsExpandTrigger="<tab>"
+let g:UltiSnipsJumpForwardTrigger="<c-b>"
+let g:UltiSnipsJumpBackwardTrigger="<c-z>"
+
 
 " }}}
 
