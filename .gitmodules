@@ -52,3 +52,6 @@
 	path = bundle/vim-php-cs-fixer
 	url = https://github.com/stephpy/vim-php-cs-fixer.git
     ignore = dirty
+[submodule "bundle/ultisnips"]
+	path = bundle/ultisnips
+	url = https://github.com/SirVer/ultisnips.git
