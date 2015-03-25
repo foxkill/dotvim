@@ -58,3 +58,6 @@
 [submodule "bundle/vim-snippets"]
 	path = bundle/vim-snippets
 	url = https://github.com/honza/vim-snippets.git
+[submodule "bundle/vim-exchange"]
+	path = bundle/vim-exchange
+	url = git://github.com/tommcdo/vim-exchange.git
