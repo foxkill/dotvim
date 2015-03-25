@@ -1,4 +1,4 @@
-" vim: set foldmarker={,} foldlevel=0 foldmethod=marker:
+" vim: set foldmarker={{{,}}} foldlevel=0 foldmethod=marker:
 
 "
 " local settings Copyright (c) 2015 Stefan Martin
@@ -13,7 +13,7 @@
 
 set t_Co=256
 
-" CSCOPE {
+" CSCOPE {{{
 
 if has ("cscope")
     " use both cscope and ctag for 'ctrl-]', ':ta', and 'vim -t'
@@ -82,23 +82,23 @@ if has ("cscope")
     nmap <C-@><C-@>i :vert scs find i ^<C-R>=expand("<cfile>")<CR>$<CR>
     nmap <C-@><C-@>d :vert scs find d <C-R>=expand("<cword>")<CR><CR>
 endif
-" }
+" }}}
 
 "
 " plugin settings
 "
 
- " COLORSCHEME:solarized {
+ " COLORSCHEME:solarized {{{
 "let g:solarized_termcolors=256
 "colorscheme solarized
 "set background=light
-"  }
+" }}}
 
-" COLORSCHEME:smyck {
+" COLORSCHEME:smyck {{{
 colorscheme smyck
-" }
+" }}}
 
-" AIRLINE PLUGIN {
+" AIRLINE PLUGIN {{{
 "
 " git clone https://github.com/bling/vim-airline ~/.vim/bundle/vim-airline
 "
@@ -110,9 +110,9 @@ let g:Powerline_symbols                  = 'fancy'
 "let g:airline_left_sep                   = ''
 "let g:airline_right_sep                  = ''
 "let g:airline_section_z                  = ''
-" }
+" }}}
 
-" CTRLP PLUGIN {
+" CTRLP PLUGIN {{{
 " $ cd ~/.vim/bundle
 " $ git clone https://github.com/kien/ctrlp.vim.git
 
@@ -130,21 +130,21 @@ if executable('ag')
     "let g:ctrlp_user_command = 'ag --files-with-matches -g "" --ignore "\.git$|\.svn$" %s'
     "let g:ctrlp_use_caching = 0
 endif
-" }
+" }}}
 
-" TAGBAR PLUGIN {
+" TAGBAR PLUGIN {{{
     " if has('tagbar')
     nnoremap <leader>tt :TagbarToggle<CR><C-w><C-l>
 " endif
-"}
+"}}}
 
-" AG PLUGIN {
+" AG PLUGIN {{{
 " https://github.com/rking/ag.vim.git bundle/ag
 let g:ag_prg="ag --vimgrep --smart-case"
 nnoremap <leader>a :Ag!<SPACE>
-" }
+" }}}
 
-" SYNTASTIC PLUGIN {
+" SYNTASTIC PLUGIN {{{
 " git clone https://github.com/scrooloose/syntastic.git
 
 let g:syntastic_php_checkers = ['php', 'phpcs', 'phpmd']
@@ -162,7 +162,7 @@ let g:syntastic_error_symbol             = "✗"
 let g:syntastic_style_error_symbol       = "✗"
 let g:syntastic_warning_symbol           = "⚠"
 let g:syntastic_style_warning_symbol     = "⚠"
-" }
+" }}}
 
 " VIM-PHPFMT PLUGIN {{{
 " git clone https://github.com/dericofilho/vim-phpfmt.git
@@ -171,7 +171,7 @@ let g:phpfmt_on_save = 0
 let g:phpfmt_psr2=1
 " disable it until it works correctly
 let g:phpfmt_enable_default_mapping = 0
-" }}}l
+" }}}
 
 " VIM-PHP-CS-FIXER PLUGIN {{{
 " 
@@ -197,9 +197,16 @@ let g:svnj_allow_leader_mappings = 1
 " ULTISNIPS PLUGIN {{{
 
 let g:UltiSnipsExpandTrigger="<tab>"
-let g:UltiSnipsJumpForwardTrigger="<c-b>"
-let g:UltiSnipsJumpBackwardTrigger="<c-z>"
+let g:UltiSnipsJumpForwardTrigger="<c-j>"
+let g:UltiSnipsJumpBackwardTrigger="<c-k>"
 
+
+" }}}
+
+
+" delimitmate plugin {{{
+"
+let g:delimitMate_expand_cr = 2
 
 " }}}
 
