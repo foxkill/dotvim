@@ -100,7 +100,7 @@ set wildignore+=*/\.svn/*,*/\.git/*
 "
 " key mappings {
 "
-
+set backspace=indent,eol,start
 " edit .vimrc quickly
 nnoremap <leader>ev <C-w><C-v><C-l>:e $MYVIMRC<CR>
 
