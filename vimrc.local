@@ -203,12 +203,16 @@ let g:UltiSnipsJumpBackwardTrigger="<c-k>"
 
 " }}}
 
-
 " delimitmate plugin {{{
 "
 let g:delimitMate_expand_cr = 2
 
 " }}}
+
+" MATCHIT PLUGIN {{{
+runtime! macros/matchit.vim
+" }}}
+
 
 "hi CursorLineNR cterm=bold
 "augroup CLNRSet
