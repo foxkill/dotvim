@@ -1,9 +1,12 @@
-" vim: set foldmarker={,} foldlevel=0 foldmethod=marker:
+" vim: set sw=4 ts=4 sts=4 et tw=78 foldmarker={,} foldlevel=0 foldmethod=marker spell:
 
 " my cool vimrc file
 "
 " Copyright (c) Stefan Martin 2015
 "
+
+" no comptible with oldvim
+set nocompatible
 
 " first run pathogen
 execute pathogen#infect()
@@ -15,9 +18,70 @@ if has("autocmd")
    filetype plugin indent on
 endif
 
+if has('clipboard')
+    if has('unnamedplus')  " When possible use + register for copy-paste
+        set clipboard=unnamed,unnamedplus
+    else         " On mac and Windows, use * register for copy-paste
+        set clipboard=unnamed
+    endif
+endif
+
 " enable modeline feature
 set modeline
 set modelines=5
+
+set shortmess+=filmnrxoOtT                      " Abbrev. of messages (avoids 'hit enter')
+set viewoptions=folds,options,cursor,unix,slash " Better Unix / Windows compatibility
+set virtualedit=onemore                         " Allow for cursor beyond last character
+set history=1000                                " Store a ton of history (default is 20)
+set spell                                       " Spell checking on
+set hidden                                      " Allow buffer switching without saving
+set iskeyword-=.                                " '.' is an end of word designator
+set iskeyword-=#                                " '#' is an end of word designator
+set iskeyword-=-                                " '-' is an end of word designator
+
+"
+" UI
+"
+"set showmode
+set tabpagemax=15
+set cursorline
+
+highlight clear SignColumn      " SignColumn should match background
+highlight clear LineNr          " Current line number row will have same background color in relative mode
+"highlight clear CursorLineNr    " Remove highlight color from current line number
+
+set backspace=indent,eol,start  " Backspace for dummies
+set linespace=0                 " No extra spaces between rows
+set number                      " Line numbers on
+set showmatch                   " Show matching brackets/parenthesis
+set incsearch                   " Find as you type search
+set hlsearch                    " Highlight search terms
+set winminheight=0              " Windows can be 0 line high
+set ignorecase                  " Case insensitive search
+set smartcase                   " Case sensitive when uc present
+set wildmenu                    " Show list instead of just completing
+set wildmode=list:longest,full  " Command <Tab> completion, list matches, then longest common part, then all.
+set whichwrap=b,s,h,l,<,>,[,]   " Backspace and cursor keys wrap too
+set scrolljump=5                " Lines to scroll when cursor leaves screen
+set scrolloff=3                 " Minimum lines to keep above and below cursor
+set foldenable                  " Auto fold code
+set listchars=tab:>\ ,trail:.,eol:¬,extends:#,nbsp:.
+
+set list
+
+"highlight LineNr term=bold cterm=NONE ctermfg=DarkGrey ctermbg=NONE gui=NONE guifg=DarkGrey guibg=NONE
+
+set wildmenu                            " set improved wildcard menu
+
+if has("statusline")
+    set laststatus=2
+    "set statusline=%<%f\                     " Filename
+    "set statusline+=%w%h%m%r                 " Options
+    "set statusline+=\ [%{&ff}/%Y]            " Filetype
+    "set statusline+=\ [%{getcwd()}]          " Current dir
+    "set statusline+=%=%-14.(%l,%c%V%)\ %p%%  " Right aligned file nav info
+endif
 
 "
 " Key mappings
@@ -28,9 +92,9 @@ nnoremap ü <C-]>
 "
 " local adjustments
 "
-" if fileisreadable()
-source ~/.vimrc.local
-
+if filereadable(expand("~/.vimrc.local"))
+    source ~/.vimrc.local
+endif
 "
 " omnicomplete
 "
@@ -43,16 +107,6 @@ set completeopt=longest,menuone
 set encoding=utf-8
 " set rtp+=/usr/lib/python3.4/site-packages/powerline/bindings/vim
 
-"
-" visual stuff
-"
-set number
-"highlight LineNr term=bold cterm=NONE ctermfg=DarkGrey ctermbg=NONE gui=NONE guifg=DarkGrey guibg=NONE
-
-set listchars=tab:>\ ,trail:.,eol:¬
-set wildmenu                            " set improved wildcard menu
-set laststatus=2
-set cursorline
 
 "
 " performance stuff
@@ -64,20 +118,36 @@ set scrolljump=5
 
 "
 " basic settings
-"
-set ts=4
-set shiftwidth=4
-set expandtab
-set softtabstop=4
-
-set autoindent
+set nowrap                      " Do not wrap long lines
+set autoindent                  " Indent at the same level of the previous line
 set smartindent
+set shiftwidth=4                " Use indents of 4 spaces
+set expandtab                   " Tabs are spaces, not tabs
+set tabstop=4                   " An indentation every four columns
+set softtabstop=4               " Let backspace delete indent
+set nojoinspaces                " Prevents inserting two spaces after punctuation on a join (J)
+set splitright                  " Puts new vsplit windows to the right of the current
+set splitbelow                  " Puts new split windows to the bottom of the current
+"set matchpairs+=<:>             " Match, to be used with %
+set pastetoggle=<F12>           " pastetoggle (sane indentation on pastes)
+"set comments=sl:/*,mb:*,elx:*/  " auto format comment blocks
+" Remove trailing whitespaces and ^M chars
+autocmd FileType c,cpp,java,go,php,javascript,puppet,python,rust,twig,xml,yml,perl,sql autocmd BufWritePre <buffer> if !exists('g:spf13_keep_trailing_whitespace') | call StripTrailingWhitespace() | endif
 
-" no wrap around
-set nowrap
+" Strip whitespace {
+function! StripTrailingWhitespace()
+    " Preparation: save last search, and cursor position.
+    let _s=@/
+    let l = line(".")
+    let c = col(".")
+    " do the business:
+    %s/\s\+$//e
+    " clean up: restore previous search history, and cursor position
+    let @/=_s
+    call cursor(l, c)
+endfunction
+" }
 
-" no comptible with oldvim
-set nocompatible
 
 " enable multiple modified buffers
 set hidden
@@ -103,7 +173,6 @@ set wildignore+=*/\.svn/*,*/\.git/*
 "
 " key mappings {
 "
-set backspace=indent,eol,start
 " edit .vimrc quickly
 nnoremap <leader>ev <C-w><C-v><C-l>:e $MYVIMRC<CR>
 

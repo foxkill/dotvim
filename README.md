@@ -44,3 +44,9 @@ git submodule update
 ## 6. Update all plugins
 
 git submodule foreach git pull origin master
+
+## 7. Remove plugins
+
+git submodule deinit vim/bundle/vim-easymotion
+git rm vim/bundle/vim-easymotion
+git rm --cached vim/bundle/vim-easymotion

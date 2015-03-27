@@ -4,14 +4,45 @@
 " local settings Copyright (c) 2015 Stefan Martin
 "
 
+" USEFULL SHORTCUTS {{{
+
+" Find merge conflict markers
+map <leader>fc /\v^[<\|=>]{7}( .*\|$)<CR>
+
+" Shortcuts
+" Change Working Directory to that of the current file
+cmap cwd lcd %:p:h
+cmap cd. lcd %:p:h
+
+" Visual shifting (does not exit Visual mode)
+vnoremap < <gv
+vnoremap > >gv
+
+" Allow using the repeat operator with a visual selection (!)
+" http://stackoverflow.com/a/8064607/127816
+vnoremap . :normal .<CR>
+
+" For when you forget to sudo.. Really Write the file.
+cmap w!! w !sudo tee % >/dev/null
+
+" Some helpers to edit mode
+" http://vimcasts.org/e/14
+cnoremap %% <C-R>=fnameescape(expand('%:h')).'/'<cr>
+map <leader>ew :e %%
+map <leader>es :sp %%
+map <leader>ev :vsp %%
+map <leader>et :tabe %%
+
+" }}}
+
 "
-" color settings
+" COLOR SETTINGS {{{
 "
 
 "hi CursorLineNr term=bold ctermfg=Yellow gui=bold guifg=Yellow
-
-
 set t_Co=256
+" }}}
+
 
 " CSCOPE {{{
 
@@ -83,60 +114,81 @@ if has ("cscope")
     nmap <C-@><C-@>d :vert scs find d <C-R>=expand("<cword>")<CR><CR>
 endif
 " }}}
-
 "
 " plugin settings
 "
 
  " COLORSCHEME:solarized {{{
-"let g:solarized_termcolors=256
-"colorscheme solarized
-"set background=light
+
+if filereadable(expand("~/.vim/bundle/vim-colors-solarized/colors/solarized.vi"))
+    let g:solarized_termcolors=256
+    let g:solarized_termtrans=1
+    let g:solarized_contrast="normal"
+    let g:solarized_visibility="normal"
+    "set background=light
+    color solarized
+endif
 " }}}
 
 " COLORSCHEME:smyck {{{
 colorscheme smyck
 " }}}
 
-" AIRLINE PLUGIN {{{
-"
-" git clone https://github.com/bling/vim-airline ~/.vim/bundle/vim-airline
-"
-let g:airline_powerline_fonts            = 1
-let g:airline#extensions#tabline#enabled = 1
-let g:airline#extensions#tabline#formatter = 'unique_tail'
-let g:airline_theme                      = 'badwolf'
-let g:Powerline_symbols                  = 'fancy'
-"let g:airline_left_sep                   = ''
-"let g:airline_right_sep                  = ''
-"let g:airline_section_z                  = ''
-" }}}
-
 " CTRLP PLUGIN {{{
 " $ cd ~/.vim/bundle
 " $ git clone https://github.com/kien/ctrlp.vim.git
 
-let g:ctrlp_map           = '<c-p>'
-let g:ctrlp_cmd           = 'CtrlPMRU'
-let g:ctrlp_use_caching   = 1
-let g:ctrlp_cache_dir     = $HOME . '/.cache/ctrlp'
-let g:ctrlp_custom_ignore = 'tmp$\|\.git$\|\.hg$\|\.svn$\|.rvm$|.bundle$\|vendor|node_modules'
-let g:ctrlp_by_mru        = 1
+if isdirectory(expand("~/.vim/bundle/ctrlp.vim/"))
+    let g:ctrlp_map           = '<c-p>'
+    let g:ctrlp_cmd           = 'CtrlPMRU'
+    let g:ctrlp_use_caching   = 1
+    let g:ctrlp_cache_dir     = $HOME . '/.cache/ctrlp'
+    let g:ctrlp_custom_ignore = 'tmp$\|\.git$\|\.hg$\|\.svn$\|.rvm$|.bundle$\|vendor|node_modules'
+    let g:ctrlp_by_mru        = 1
+    let g:ctrlp_working_path_mode = 'ra'
 
-nnoremap <leader>ct :CtrlPBufTag<CR>
+    nnoremap <silent> <D-t> :CtrlP<CR>
+    nnoremap <silent> <D-r> :CtrlPMRU<CR>
+    nnoremap <leader>ct :CtrlPBufTag<CR>
 
-if executable('ag')
-    "set grepprg=ag\ --nogroup \--nocolor
-    "let g:ctrlp_user_command = 'ag --files-with-matches -g "" --ignore "\.git$|\.svn$" %s'
-    "let g:ctrlp_use_caching = 0
+
+    let g:ctrlp_custom_ignore = {
+                \ 'dir':  '\.git$\|\.hg$\|\.svn$',
+                \ 'file': '\.exe$\|\.so$\|\.dll$\|\.pyc$' }
+
+    " On Windows use "dir" as fallback command.
+    if WINDOWS()
+        let s:ctrlp_fallback = 'dir %s /-n /b /s /a-d'
+    elseif executable('ag')
+        let s:ctrlp_fallback = 'ag %s --nocolor -l -g ""'
+        "set grepprg=ag\ --nogroup \--nocolor
+        "let g:ctrlp_user_command = 'ag --files-with-matches -g "" --ignore "\.git$|\.svn$" %s'
+        "let g:ctrlp_use_caching = 0
+    elseif executable('ack-grep')
+        let s:ctrlp_fallback = 'ack-grep %s --nocolor -f'
+    elseif executable('ack')
+        let s:ctrlp_fallback = 'ack %s --nocolor -f'
+    else
+        let s:ctrlp_fallback = 'find %s -type f'
+    endif
+    let g:ctrlp_user_command = {
+                \ 'types': {
+                \ 1: ['.git', 'cd %s && git ls-files . --cached --exclude-standard --others'],
+                \ 2: ['.hg', 'hg --cwd %s locate -I .'],
+                \ },
+                \ 'fallback': s:ctrlp_fallback
+                \ }
+
+    if isdirectory(expand("~/.vim/bundle/ctrlp-funky/"))
+        " CtrlP extensions
+        let g:ctrlp_extensions = ['funky']
+
+        "funky
+        nnoremap <Leader>fu :CtrlPFunky<Cr>
+    endif
 endif
-" }}}
 
-" TAGBAR PLUGIN {{{
-    " if has('tagbar')
-    nnoremap <leader>tt :TagbarToggle<CR><C-w><C-l>
-" endif
-"}}}
+" }}}
 
 " AG PLUGIN {{{
 " https://github.com/rking/ag.vim.git bundle/ag
@@ -182,12 +234,6 @@ end
 let g:php_cs_fixer_verbose = 1
 " }}}
 
-" NEO-COMPLETE PLUGIN {{{
-"
-let g:neocomplete#enable_at_startup = 1
-
-" }}}
-
 " SVNJ PLUGIN {{{
 "
 let g:svnj_allow_leader_mappings = 1
@@ -203,7 +249,7 @@ let g:UltiSnipsJumpBackwardTrigger="<c-k>"
 
 " }}}
 
-" delimitmate plugin {{{
+" DELIMITMATE PLUGIN {{{
 "
 let g:delimitMate_expand_cr = 2
 
@@ -214,12 +260,205 @@ runtime! macros/matchit.vim
 " }}}
 
 
-"hi CursorLineNR cterm=bold
-"augroup CLNRSet
-"    autocmd! ColorScheme * hi CursorLineNR cterm=bold
-"augroup END
-
-
 highlight ColorColumn ctermbg=LightBlue
 "" execute set colorcolumn= . join(range(120,335), ',')
 " call matchadd('ColorColumn', '\%81v', 100)
+
+
+" TABULARIZE {{{
+if isdirectory(expand("~/.vim/bundle/tabular"))
+    nmap <Leader>a& :Tabularize /&<CR>
+    vmap <Leader>a& :Tabularize /&<CR>
+    nmap <Leader>a= :Tabularize /=<CR>
+    vmap <Leader>a= :Tabularize /=<CR>
+    nmap <Leader>a=> :Tabularize /=><CR>
+    vmap <Leader>a=> :Tabularize /=><CR>
+    nmap <Leader>a: :Tabularize /:<CR>
+    vmap <Leader>a: :Tabularize /:<CR>
+    nmap <Leader>a:: :Tabularize /:\zs<CR>
+    vmap <Leader>a:: :Tabularize /:\zs<CR>
+    nmap <Leader>a, :Tabularize /,<CR>
+    vmap <Leader>a, :Tabularize /,<CR>
+    nmap <Leader>a,, :Tabularize /,\zs<CR>
+    vmap <Leader>a,, :Tabularize /,\zs<CR>
+    nmap <Leader>a<Bar> :Tabularize /<Bar><CR>
+    vmap <Leader>a<Bar> :Tabularize /<Bar><CR>
+endif
+" }}}
+
+" TAGBAR {{{
+if isdirectory(expand("~/.vim/bundle/tagbar/"))
+    nnoremap <silent> <leader>tt :TagbarToggle<CR>
+
+    " If using go please install the gotags program using the following
+    " go install github.com/jstemmer/gotags
+    " And make sure gotags is in your path
+    let g:tagbar_type_go = {
+                \ 'ctagstype' : 'go',
+                \ 'kinds'     : [  'p:package', 'i:imports:1', 'c:constants', 'v:variables',
+                \ 't:types',  'n:interfaces', 'w:fields', 'e:embedded', 'm:methods',
+                \ 'r:constructor', 'f:functions' ],
+                \ 'sro' : '.',
+                \ 'kind2scope' : { 't' : 'ctype', 'n' : 'ntype' },
+                \ 'scope2kind' : { 'ctype' : 't', 'ntype' : 'n' },
+                \ 'ctagsbin'  : 'gotags',
+                \ 'ctagsargs' : '-sort -silent'
+                \ }
+endif
+"}}}
+
+ " OMNICOMPLETE {{{
+" NEOCOMPLETE {{{
+if isdirectory(expand("~/.vim/bundle/neocomplete/"))
+    let g:neocomplete#enable_at_startup            = 1
+    " let g:spf13_noninvasive_completion             = 1
+    " let g:acp_enableAtStartup                      = 0
+    " let g:neocomplete#enable_smart_case            = 1
+    " let g:neocomplete#enable_auto_delimiter        = 1
+    " let g:neocomplete#max_list                     = 15
+    " let g:neocomplete#force_overwrite_completefunc = 1
+
+
+    " " Define dictionary.
+    " let g:neocomplete#sources#dictionary#dictionaries = {
+    "             \ 'default' : '',
+    "             \ 'vimshell' : $HOME.'/.vimshell_hist',
+    "             \ 'scheme' : $HOME.'/.gosh_completions'
+    "             \ }
+    "
+
+    if !exists('g:neocomplete#keyword_patterns')
+        let g:neocomplete#keyword_patterns = {}
+    endif
+    let g:neocomplete#keyword_patterns['default'] = '\h\w*'
+
+    " Enable heavy omni completion.
+    if !exists('g:neocomplete#sources#omni#input_patterns')
+        let g:neocomplete#sources#omni#input_patterns = {}
+    endif
+
+    let g:neocomplete#sources#omni#input_patterns.php = '[^. \t]->\h\w*\|\h\w*::'
+    " let g:neocomplete#sources#omni#input_patterns.perl = '\h\w*->\h\w*\|\h\w*::'
+    " let g:neocomplete#sources#omni#input_patterns.c = '[^.[:digit:] *\t]\%(\.\|->\)'
+    " let g:neocomplete#sources#omni#input_patterns.cpp = '[^.[:digit:] *\t]\%(\.\|->\)\|\h\w*::'
+    " let g:neocomplete#sources#omni#input_patterns.ruby = '[^. *\t]\.\h\w*\|\h\w*::'
+
+
+    " if exists('g:spf13_noninvasive_completion')
+    "     inoremap <CR> <CR>
+    "     " <ESC> takes you out of insert mode
+    "     inoremap <expr> <Esc>   pumvisible() ? "\<C-y>\<Esc>" : "\<Esc>"
+    "     " <CR> accepts first, then sends the <CR>
+    "     inoremap <expr> <CR>    pumvisible() ? "\<C-y>\<CR>" : "\<CR>"
+    "     " <Down> and <Up> cycle like <Tab> and <S-Tab>
+    "     inoremap <expr> <Down>  pumvisible() ? "\<C-n>" : "\<Down>"
+    "     inoremap <expr> <Up>    pumvisible() ? "\<C-p>" : "\<Up>"
+    "     " Jump up and down the list
+    "     inoremap <expr> <C-d>   pumvisible() ? "\<PageDown>\<C-p>\<C-n>" : "\<C-d>"
+    "     inoremap <expr> <C-u>   pumvisible() ? "\<PageUp>\<C-p>\<C-n>" : "\<C-u>"
+    " else
+    "     " <C-k> Complete Snippet
+    "     " <C-k> Jump to next snippet point
+    "     imap <silent><expr><C-k> neosnippet#expandable() ?
+    "                 \ "\<Plug>(neosnippet_expand_or_jump)" : (pumvisible() ?
+    "                 \ "\<C-e>" : "\<Plug>(neosnippet_expand_or_jump)")
+    "     smap <TAB> <Right><Plug>(neosnippet_jump_or_expand)
+    "
+    "     inoremap <expr><C-g> neocomplete#undo_completion()
+    "     inoremap <expr><C-l> neocomplete#complete_common_string()
+    "     "inoremap <expr><CR> neocomplete#complete_common_string()
+    "
+    "     " <CR>: close popup
+    "     " <s-CR>: close popup and save indent.
+    "     inoremap <expr><s-CR> pumvisible() ? neocomplete#smart_close_popup()"\<CR>" : "\<CR>"
+    "
+    "     function! CleverCr()
+    "         if pumvisible()
+    "             if neosnippet#expandable()
+    "                 let exp = "\<Plug>(neosnippet_expand)"
+    "                 return exp . neocomplete#smart_close_popup()
+    "             else
+    "                 return neocomplete#smart_close_popup()
+    "             endif
+    "         else
+    "             return "\<CR>"
+    "         endif
+    "     endfunction
+    "
+    "     " <CR> close popup and save indent or expand snippet
+    "     imap <expr> <CR> CleverCr()
+    "     " <C-h>, <BS>: close popup and delete backword char.
+    "     inoremap <expr><BS> neocomplete#smart_close_popup()."\<C-h>"
+    "     inoremap <expr><C-y> neocomplete#smart_close_popup()
+    " endif
+    " " <TAB>: completion.
+    " inoremap <expr><TAB> pumvisible() ? "\<C-n>" : "\<TAB>"
+    " inoremap <expr><S-TAB> pumvisible() ? "\<C-p>" : "\<TAB>"
+    "
+    " " Courtesy of Matteo Cavalleri
+    "
+    " function! CleverTab()
+    "     if pumvisible()
+    "         return "\<C-n>"
+    "     endif
+    "     let substr = strpart(getline('.'), 0, col('.') - 1)
+    "     let substr = matchstr(substr, '[^ \t]*$')
+    "     if strlen(substr) == 0
+    "         " nothing to match on empty string
+    "         return "\<Tab>"
+    "     else
+    "         " existing text matching
+    "         if neosnippet#expandable_or_jumpable()
+    "             return "\<Plug>(neosnippet_expand_or_jump)"
+    "         else
+    "             return neocomplete#start_manual_complete()
+    "         endif
+    "     endif
+    " endfunction
+    "
+    " imap <expr> <Tab> CleverTab()
+    " " }
+    "
+    " Enable heavy omni completion.
+    if !exists('g:neocomplete#sources#omni#input_patterns')
+        let g:neocomplete#sources#omni#input_patterns = {}
+    endif
+
+    let g:neocomplete#sources#omni#input_patterns.php = '[^. \t]->\h\w*\|\h\w*::'
+    " let g:neocomplete#sources#omni#input_patterns.perl = '\h\w*->\h\w*\|\h\w*::'
+    " let g:neocomplete#sources#omni#input_patterns.c = '[^.[:digit:] *\t]\%(\.\|->\)'
+    " let g:neocomplete#sources#omni#input_patterns.cpp = '[^.[:digit:] *\t]\%(\.\|->\)\|\h\w*::'
+    " let g:neocomplete#sources#omni#input_patterns.ruby = '[^. *\t]\.\h\w*\|\h\w*::'
+endif
+" }}}
+
+ " VIM-AIRLINE PLUGIN {{{
+" Set configuration options for the statusline plugin vim-airline.
+" Use the powerline theme and optionally enable powerline symbols.
+" To use the symbols , , , , , , and .in the statusline
+" See `:echo g:airline_theme_map` for some more choices
+" Default in terminal vim is 'dark'
+"
+" git clone https://github.com/bling/vim-airline ~/.vim/bundle/vim-airline
+"
+if isdirectory(expand("~/.vim/bundle/vim-airline/"))
+    let g:airline_powerline_fonts              = 1
+    let g:airline#extensions#tabline#enabled   = 1
+    let g:airline#extensions#tabline#formatter = 'unique_tail'
+    let g:airline_theme                        = 'badwolf'
+
+    "let g:airline_left_sep                    = ''
+    "let g:airline_right_sep                   = ''
+    "let g:airline_section_z                   = ''
+
+
+    if !exists('g:airline_theme')
+        let g:airline_theme = 'solarized'
+    endif
+    if !exists('g:airline_powerline_fonts')
+        " Use the default set of separators with a few customizations
+        let g:airline_left_sep='›'  " Slightly fancier than '>'
+        let g:airline_right_sep='‹' " Slightly fancier than '<'
+    endif
+endif
+" }}}
