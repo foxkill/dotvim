@@ -41,6 +41,11 @@ map <leader>et :tabe %%
 
 "hi CursorLineNr term=bold ctermfg=Yellow gui=bold guifg=Yellow
 set t_Co=256
+
+highlight ColorColumn ctermbg=LightBlue
+" execute set colorcolumn= . join(range(120,335), ',')
+" call matchadd('ColorColumn', '\%81v', 100)
+
 " }}}
 
 
@@ -259,10 +264,22 @@ let g:delimitMate_expand_cr = 2
 runtime! macros/matchit.vim
 " }}}
 
+" MULTIPLE CURSORS {{{
+" Called once right before you start selecting multiple cursors
+function! Multiple_cursors_before()
+  if exists(':NeoCompleteLock')==2
+    exe 'NeoCompleteLock'
+  endif
+endfunction
 
-highlight ColorColumn ctermbg=LightBlue
-"" execute set colorcolumn= . join(range(120,335), ',')
-" call matchadd('ColorColumn', '\%81v', 100)
+" Called once only when the multiple selection is canceled (default <Esc>)
+function! Multiple_cursors_after()
+  if exists(':NeoCompleteUnlock')==2
+    exe 'NeoCompleteUnlock'
+  endif
+endfunction
+" }}}
+
 
 
 " TABULARIZE {{{
