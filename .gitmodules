@@ -58,3 +58,6 @@
 [submodule "bundle/vim-exchange"]
 	path = bundle/vim-exchange
 	url = git://github.com/tommcdo/vim-exchange.git
+[submodule "bundle/ctrlp-funky"]
+	path = bundle/ctrlp-funky
+	url = https://github.com/tacahiroy/ctrlp-funky.git

@@ -138,22 +138,22 @@ colorscheme smyck
 " $ cd ~/.vim/bundle
 " $ git clone https://github.com/kien/ctrlp.vim.git
 
-if isdirectory(expand("~/.vim/bundle/ctrlp.vim/"))
+if isdirectory(expand("~/.vim/bundle/ctrlp/"))
     let g:ctrlp_map           = '<c-p>'
     let g:ctrlp_cmd           = 'CtrlPMRU'
     let g:ctrlp_use_caching   = 1
     let g:ctrlp_cache_dir     = $HOME . '/.cache/ctrlp'
-    let g:ctrlp_custom_ignore = 'tmp$\|\.git$\|\.hg$\|\.svn$\|.rvm$|.bundle$\|vendor|node_modules'
+    "let g:ctrlp_custom_ignore = 'tmp$\|\.git$\|\.hg$\|\.svn$\|.rvm$|.bundle$\|vendor|node_modules'
     let g:ctrlp_by_mru        = 1
     let g:ctrlp_working_path_mode = 'ra'
 
-    nnoremap <silent> <D-t> :CtrlP<CR>
-    nnoremap <silent> <D-r> :CtrlPMRU<CR>
-    nnoremap <leader>ct :CtrlPBufTag<CR>
+    "nnoremap <silent> <D-t> :CtrlP<CR>
+    "nnoremap <silent> <D-r> :CtrlPMRU<CR>
+    nnoremap <silent> <leader>ct :CtrlPBufTag<CR>
 
 
     let g:ctrlp_custom_ignore = {
-                \ 'dir':  '\.git$\|\.hg$\|\.svn$',
+                \ 'dir':  '\.git$\|\.hg$\|\.svn$|vendor|node_modules',
                 \ 'file': '\.exe$\|\.so$\|\.dll$\|\.pyc$' }
 
     " On Windows use "dir" as fallback command.
@@ -178,13 +178,13 @@ if isdirectory(expand("~/.vim/bundle/ctrlp.vim/"))
                 \ },
                 \ 'fallback': s:ctrlp_fallback
                 \ }
-
+    nnoremap <Leader>fU :execute 'CtrlPFunky ' . expand('<cword>')<Cr>
+    nnoremap <leader>fu :CtrlPFunky<CR>
     if isdirectory(expand("~/.vim/bundle/ctrlp-funky/"))
         " CtrlP extensions
         let g:ctrlp_extensions = ['funky']
 
         "funky
-        nnoremap <Leader>fu :CtrlPFunky<Cr>
     endif
 endif
 

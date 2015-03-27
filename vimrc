@@ -12,6 +12,18 @@ set nocompatible
 execute pathogen#infect()
 execute pathogen#helptags()
 
+" Identify platform {{{
+silent function! OSX()
+    return has('macunix')
+endfunction
+silent function! LINUX()
+    return has('unix') && !has('macunix') && !has('win32unix')
+endfunction
+silent function! WINDOWS()
+    return  (has('win16') || has('win32') || has('win64'))
+endfunction
+" }}}
+
 syntax on
 
 if has("autocmd")
@@ -34,7 +46,7 @@ set shortmess+=filmnrxoOtT                      " Abbrev. of messages (avoids 'h
 set viewoptions=folds,options,cursor,unix,slash " Better Unix / Windows compatibility
 set virtualedit=onemore                         " Allow for cursor beyond last character
 set history=1000                                " Store a ton of history (default is 20)
-set spell                                       " Spell checking on
+"set spell                                       " Spell checking on
 set hidden                                      " Allow buffer switching without saving
 set iskeyword-=.                                " '.' is an end of word designator
 set iskeyword-=#                                " '#' is an end of word designator
