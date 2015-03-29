@@ -6,6 +6,9 @@
 
 " USEFULL SHORTCUTS {{{
 
+let mapleader = ","
+nnoremap ü <C-]>
+
 " Find merge conflict markers
 map <leader>fc /\v^[<\|=>]{7}( .*\|$)<CR>
 
