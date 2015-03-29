@@ -1,4 +1,4 @@
-" vim: set sw=4 ts=4 sts=4 et tw=78 foldmarker={,} foldlevel=0 foldmethod=marker spell:
+" vim: set sw=4 ts=4 sts=4 et tw=78 foldmarker={,} foldlevel=0 foldmethod=marker :
 
 " my cool vimrc file
 "
@@ -30,18 +30,18 @@ if has("autocmd")
    filetype plugin indent on
 endif
 
-if has('clipboard')
-    if has('unnamedplus')  " When possible use + register for copy-paste
+set bufhidden=wipe
+
+if has("clipboard")
+    if has("unnamedplus")  " When possible use + register for copy-paste
         set clipboard=unnamed,unnamedplus
     else         " On mac and Windows, use * register for copy-paste
         set clipboard=unnamed
     endif
 endif
 
-" enable modeline feature
 set modeline
 set modelines=5
-
 set shortmess+=filmnrxoOtT                      " Abbrev. of messages (avoids 'hit enter')
 set viewoptions=folds,options,cursor,unix,slash " Better Unix / Windows compatibility
 set virtualedit=onemore                         " Allow for cursor beyond last character
@@ -79,12 +79,9 @@ set scrolljump=5                " Lines to scroll when cursor leaves screen
 set scrolloff=3                 " Minimum lines to keep above and below cursor
 set foldenable                  " Auto fold code
 set listchars=tab:>\ ,trail:.,eol:¬,extends:#,nbsp:.
-
-set list
+"set list
 
 "highlight LineNr term=bold cterm=NONE ctermfg=DarkGrey ctermbg=NONE gui=NONE guifg=DarkGrey guibg=NONE
-
-set wildmenu                            " set improved wildcard menu
 
 if has("statusline")
     set laststatus=2
@@ -96,17 +93,12 @@ if has("statusline")
 endif
 
 "
-" Key mappings
-"
-let mapleader = ","
-nnoremap ü <C-]>
-
-"
 " local adjustments
 "
 if filereadable(expand("~/.vimrc.local"))
     source ~/.vimrc.local
 endif
+
 "
 " omnicomplete
 "
@@ -115,9 +107,6 @@ set omnifunc=syntaxcomplete#Complete
 set complete=.,w,b,u,t
 " set completeopt=longest,menuone,preview
 set completeopt=longest,menuone
-
-set encoding=utf-8
-" set rtp+=/usr/lib/python3.4/site-packages/powerline/bindings/vim
 
 
 "
@@ -130,6 +119,7 @@ set scrolljump=5
 
 "
 " basic settings
+"
 set nowrap                      " Do not wrap long lines
 set autoindent                  " Indent at the same level of the previous line
 set smartindent
@@ -140,11 +130,15 @@ set softtabstop=4               " Let backspace delete indent
 set nojoinspaces                " Prevents inserting two spaces after punctuation on a join (J)
 set splitright                  " Puts new vsplit windows to the right of the current
 set splitbelow                  " Puts new split windows to the bottom of the current
-"set matchpairs+=<:>             " Match, to be used with %
+"set matchpairs+=<:>            " Match, to be used with %
 set pastetoggle=<F12>           " pastetoggle (sane indentation on pastes)
+set encoding=utf-8              " utf8
+set hidden                      " enable multiple modified buffers
+
 "set comments=sl:/*,mb:*,elx:*/  " auto format comment blocks
+
 " Remove trailing whitespaces and ^M chars
-autocmd FileType c,cpp,java,go,php,javascript,puppet,python,rust,twig,xml,yml,perl,sql autocmd BufWritePre <buffer> if !exists('g:spf13_keep_trailing_whitespace') | call StripTrailingWhitespace() | endif
+autocmd FileType c,cpp,java,go,php,javascript,puppet,python,rust,twig,xml,yml,perl,sql autocmd BufWritePre <buffer> call StripTrailingWhitespace()
 
 " Strip whitespace {
 function! StripTrailingWhitespace()
@@ -159,10 +153,6 @@ function! StripTrailingWhitespace()
     call cursor(l, c)
 endfunction
 " }
-
-
-" enable multiple modified buffers
-set hidden
 
 " extended history
 set history=1000
@@ -212,6 +202,8 @@ autocmd cursormoved * set hlsearch
 
 " autosource
 autocmd! bufwritepost .vimrc source $HOME/.vimrc
+autocmd! bufwritepost .vimrc.local source $HOME/.vimrc.local
+
 
 " remove trailing spaces when writing php files
-autocmd! bufwritepre *.php :%s/\s\+$//e
+" autocmd! bufwritepre *.php :%s/\s\+$//e
