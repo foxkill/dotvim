@@ -161,6 +161,7 @@ if isdirectory(expand("~/.vim/bundle/ctrlp/"))
     let g:ctrlp_cache_dir           = $HOME . '/.cache/ctrlp'
     let g:ctrlp_by_mru              = 1
     let g:ctrlp_working_path_mode   = 'ra'
+    let g:ctrlp_max_height          = 25
 
     "nnoremap <silent> <D-t> :CtrlP<CR>
     "nnoremap <silent> <D-r> :CtrlPMRU<CR>
@@ -253,7 +254,8 @@ let g:php_cs_fixer_verbose = 1
 " SVNJ PLUGIN {{{
 "
 let g:svnj_allow_leader_mappings = 0
-
+"let g:svnj_trunk_url = ''
+"let g:svnj_trunk_url = ''
 " }}}
 
 " ULTISNIPS PLUGIN {{{
@@ -333,7 +335,6 @@ if isdirectory(expand("~/.vim/bundle/tagbar/"))
 endif
 "}}}
 
- " OMNICOMPLETE {{{
 " NEOCOMPLETE {{{
 if isdirectory(expand("~/.vim/bundle/neocomplete/"))
     let g:neocomplete#enable_at_startup            = 1
@@ -458,7 +459,7 @@ if isdirectory(expand("~/.vim/bundle/neocomplete/"))
 endif
 " }}}
 
- " VIM-AIRLINE PLUGIN {{{
+" VIM-AIRLINE PLUGIN {{{
 " Set configuration options for the statusline plugin vim-airline.
 " Use the powerline theme and optionally enable powerline symbols.
 " To use the symbols , , , , , , and .in the statusline
@@ -468,10 +469,13 @@ endif
 " git clone https://github.com/bling/vim-airline ~/.vim/bundle/vim-airline
 "
 if isdirectory(expand("~/.vim/bundle/vim-airline/"))
-    let g:airline_powerline_fonts              = 1
-    let g:airline#extensions#tabline#enabled   = 1
-    let g:airline#extensions#tabline#formatter = 'unique_tail'
-    let g:airline_theme                        = 'badwolf'
+    let g:airline_powerline_fonts                    = 1
+    let g:airline#extensions#tabline#enabled         = 1
+    let g:airline#extensions#tabline#formatter       = 'unique_tail'
+    let g:airline_theme                              = 'badwolf'
+    let g:airline#extensions#tabline#left_sep        = ' '
+    let g:airline#extensions#tabline#left_alt_sep    = '¦'
+    let g:airline#extensions#tabline#buffer_idx_mode = 1
 
     "let g:airline_left_sep                    = ''
     "let g:airline_right_sep                   = ''
@@ -487,4 +491,10 @@ if isdirectory(expand("~/.vim/bundle/vim-airline/"))
         let g:airline_right_sep='‹' " Slightly fancier than '<'
     endif
 endif
+" }}}
+
+" INDENTLINE PLUGIN {{{
+let g:indentLine_char = '︙'
+let g:indentLine_char = '│'
+let g:indentLine_char = '┆'
 " }}}
