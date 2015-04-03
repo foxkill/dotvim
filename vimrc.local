@@ -162,6 +162,8 @@ if isdirectory(expand("~/.vim/bundle/ctrlp/"))
     let g:ctrlp_by_mru              = 1
     let g:ctrlp_working_path_mode   = 'ra'
     let g:ctrlp_max_height          = 25
+    let g:ctrlp_max_files           = 0
+    let g:ctrlp_max_depth           = 40
 
     "nnoremap <silent> <D-t> :CtrlP<CR>
     "nnoremap <silent> <D-r> :CtrlPMRU<CR>
@@ -187,13 +189,15 @@ if isdirectory(expand("~/.vim/bundle/ctrlp/"))
     else
         let s:ctrlp_fallback = 'find %s -type f'
     endif
-    let g:ctrlp_user_command = {
-                \ 'types': {
-                \ 1: ['.git', 'cd %s && git ls-files . --cached --exclude-standard --others'],
-                \ 2: ['.hg', 'hg --cwd %s locate -I .'],
-                \ },
-                \ 'fallback': s:ctrlp_fallback
-                \ }
+
+    " let g:ctrlp_user_command = {
+    "             \ 'types': {
+    "             \ 1: ['.git', 'cd %s && git ls-files . --cached --exclude-standard --others'],
+    "             \ 2: ['.hg', 'hg --cwd %s locate -I .'],
+    "             \ },
+    "             \ 'fallback': s:ctrlp_fallback
+    "             \ }
+
     nnoremap <Leader>fU :execute 'CtrlPFunky ' . expand('<cword>')<Cr>
     nnoremap <leader>fu :CtrlPFunky<CR>
     if isdirectory(expand("~/.vim/bundle/ctrlp-funky/"))
@@ -256,6 +260,23 @@ let g:php_cs_fixer_verbose = 1
 let g:svnj_allow_leader_mappings = 0
 "let g:svnj_trunk_url = ''
 "let g:svnj_trunk_url = ''
+map <silent> <leader>bl :SVNBlame<CR>
+map <silent> <leader>ci:SVNCommits<CR>
+map <silent> <leader>df :SVNDiff<CR>
+map <silent> <leader>dfi :SVNDiff!<CR>
+map <silent> <leader>st :SVNStatus<CR>  
+map <silent> <leader>su :SVNStatus u<CR>
+map <silent> <leader>sq :SVNStatus u q<CR>
+map <silent> <leader>sc :SVNStatus .<CR>
+map <silent> <leader>lg :SVNLog<CR>
+"map <silent> <leader>b :SVNBrowse<CR>
+"map <silent> <leader>bl :SVNBrowseMyList<CR>
+"map <silent> <leader>br :SVNBrowseRepo<CR>
+"map <silent> <leader>bw :SVNBrowseWorkingCopy<CR>
+"map <silent> <leader>bb :SVNBrowseBookMarks<CR>
+"map <silent> <leader>bf :SVNBrowseBuffer<CR>
+"map <silent> <leader>bm :SVNBrowse<CR>
+map <silent> <leader>q :diffoff! <CR> :q<CR>
 " }}}
 
 " ULTISNIPS PLUGIN {{{
