@@ -9,6 +9,15 @@
 let mapleader = ","
 nnoremap ü <C-]>
 
+"
+" command line mapping like in shell
+"
+cnoremap <C-A> <Home>
+cnoremap <C-E> <End>
+cnoremap <C-K> <C-U>
+cnoremap <C-P> <Up>
+cnoremap <C-N> <Down>
+
 let g:train_musle_memory = 1
 
 if g:train_musle_memory == 1
@@ -47,6 +56,7 @@ map <leader>ev :vsp %%
 map <leader>et :tabe %%
 
 " }}}
+
 " COLOR SETTINGS {{{
 "
 
@@ -258,25 +268,25 @@ let g:php_cs_fixer_verbose = 1
 " SVNJ PLUGIN {{{
 "
 let g:svnj_allow_leader_mappings = 0
-"let g:svnj_trunk_url = ''
-"let g:svnj_trunk_url = ''
-map <silent> <leader>bl :SVNBlame<CR>
-map <silent> <leader>ci:SVNCommits<CR>
-map <silent> <leader>df :SVNDiff<CR>
-map <silent> <leader>dfi :SVNDiff!<CR>
-map <silent> <leader>st :SVNStatus<CR>  
-map <silent> <leader>su :SVNStatus u<CR>
-map <silent> <leader>sq :SVNStatus u q<CR>
-map <silent> <leader>sc :SVNStatus .<CR>
-map <silent> <leader>lg :SVNLog<CR>
-"map <silent> <leader>b :SVNBrowse<CR>
-"map <silent> <leader>bl :SVNBrowseMyList<CR>
-"map <silent> <leader>br :SVNBrowseRepo<CR>
-"map <silent> <leader>bw :SVNBrowseWorkingCopy<CR>
-"map <silent> <leader>bb :SVNBrowseBookMarks<CR>
-"map <silent> <leader>bf :SVNBrowseBuffer<CR>
-"map <silent> <leader>bm :SVNBrowse<CR>
-map <silent> <leader>q :diffoff! <CR> :q<CR>
+"let g                   : svnj_trunk_url = ''
+"let g                   : svnj_trunk_url = ''
+map <silent> <leader>bl  : SVNBlame<CR>
+map <silent> <leader>ci  : SVNCommit<CR>
+map <silent> <leader>df  : SVNDiff<CR>
+map <silent> <leader>dfi : SVNDiff!<CR>
+map <silent> <leader>st  : SVNStatus<CR>
+map <silent> <leader>su  : SVNStatus u<CR>
+map <silent> <leader>sq  : SVNStatus u q<CR>
+map <silent> <leader>sc  : SVNStatus .<CR>
+map <silent> <leader>lg  : SVNLog<CR>
+"map <silent> <leader>b  : SVNBrowse<CR>
+"map <silent> <leader>bl : SVNBrowseMyList<CR>
+"map <silent> <leader>br : SVNBrowseRepo<CR>
+"map <silent> <leader>bw : SVNBrowseWorkingCopy<CR>
+"map <silent> <leader>bb : SVNBrowseBookMarks<CR>
+"map <silent> <leader>bf : SVNBrowseBuffer<CR>
+"map <silent> <leader>bm : SVNBrowse<CR>
+map <silent> <leader>q   : diffoff! <CR>: q<CR>
 " }}}
 
 " ULTISNIPS PLUGIN {{{
