@@ -5,7 +5,6 @@
 "
 
 " USEFULL SHORTCUTS {{{
-
 let mapleader = ","
 nnoremap ü <C-]>
 "nnoremap ö ]c
@@ -18,19 +17,21 @@ if isdirectory(expand("~/.vim/bundle/vim-signify/"))
     nmap <leader>gk <plug>(signify-prev-hunk)
 endif
 
-" nnoremap <silent> <C-Up>   :move-2<CR>==
-" nnoremap <silent> <C-Down> :move+<CR>==
-" xnoremap <silent> <C-Up>   :move-2<CR>gv=gv
-" xnoremap <silent> <C-Down> :move'>+<CR>gv=gv
+"
+" this requires iterm2 to xterm key profiles
+"
+nnoremap <silent> <C-Up>   :move-2<CR>==
+nnoremap <silent> <C-Down> :move+<CR>==
+xnoremap <silent> <C-Up>   :move-2<CR>gv=gv
+xnoremap <silent> <C-Down> :move'>+<CR>gv=gv
 
-nnoremap <C-Up> :bnext<CR>
 "Duplicate lines above and below
-inoremap <C-A-down> <esc>Ypk
-nnoremap <C-A-down> Ypk
-xnoremap <C-A-down> y`>pgv
-inoremap <C-A-up> <esc>YPj
-nnoremap <C-A-up> YPj
-xnoremap <C-A-up> y`<Pgv
+nnoremap <C-S-Down> Yp
+inoremap <C-S-Down> <esc>Yp
+xnoremap <C-S-Down> y`>pgv
+nnoremap <C-S-Up> YP
+inoremap <C-S-Up> <esc>YP
+xnoremap <C-S-Up> y`<Pgv
 
 "
 " command line mapping like in shell
@@ -41,7 +42,7 @@ cnoremap <C-K> <C-U>
 cnoremap <C-P> <Up>
 cnoremap <C-N> <Down>
 
-let g:train_musle_memory = 0
+let g:train_musle_memory = 1
 
 if g:train_musle_memory == 1
     nnoremap <left> :bprev<CR>
