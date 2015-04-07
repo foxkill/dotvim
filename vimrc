@@ -183,8 +183,6 @@ nnoremap <leader>w :w!<CR>
 
 "easy mapping to normal mode
 imap jj <ESC>
-imap dd <ESC>dd
-imap DD <ESC>dd
 "}
 
 "
