@@ -248,6 +248,12 @@ endif
 " https://github.com/rking/ag.vim.git bundle/ag
 let g:ag_prg="ag --vimgrep --smart-case"
 nnoremap <leader>a :Ag!<SPACE>
+if executable("ag")
+    set grepprg=ag\ --nogroup\ --nocolor\ --ignore-case\ --column
+    set grepformat=%f:%l:%c:%m,%f:%l:%m
+    nnoremap <leader>s :silent! grep! "\b<C-r><C-w>\b"<CR>:cwindow<CR>:redraw!<CR>
+    command! -nargs=+ -complete=file_in_path -bar Ag silent grep! <args>|cwindow|redraw!
+endif
 " }}}
 
 " SYNTASTIC PLUGIN {{{
