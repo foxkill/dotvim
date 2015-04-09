@@ -71,3 +71,6 @@
 [submodule "bundle/indentLine"]
 	path = bundle/indentLine
 	url = https://github.com/Yggdroot/indentLine.git
+[submodule "bundle/vim-argwrap"]
+	path = bundle/vim-argwrap
+	url = https://github.com/FooSoft/vim-argwrap.git
