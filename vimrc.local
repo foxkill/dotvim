@@ -561,5 +561,5 @@ let g:indentLine_char = '┆'
 " }}} 
 
 " ARGWRAP PLUGIN {{{
-nnoremap <silent> <leader>a :ArgWrap<CR>
+nnoremap <leader>aw :ArgWrap<CR>
 " }}}
