@@ -6,19 +6,25 @@
 
 " USEFULL SHORTCUTS {{{
 let mapleader = ","
-nnoremap ü <C-]>
+nnoremap ß <C-]>
 "nnoremap ö ]c
 "nnoremap ä [c
 
+if &term =~ '^screen'
+    " tmux will send xterm-style keys when xterm-keys is on
+    execute "set <xUp>=\e[1;*A"
+    execute "set <xDown>=\e[1;*B"
+    execute "set <xRight>=\e[1;*C"
+    execute "set <xLeft>=\e[1;*D"
+endif
+
 if isdirectory(expand("~/.vim/bundle/vim-signify/"))
-    " nnoremap ö <Plug>(signify-next-hunk)
-    " nnoremap ä <Plug>(signify-prev-hunk)
     nmap <leader>gj <plug>(signify-next-hunk)
     nmap <leader>gk <plug>(signify-prev-hunk)
 endif
 
 "
-" this requires iterm2 to xterm key profiles
+" this requires iterm2 to use xterm key profiles
 "
 nnoremap <silent> <C-Up>   :move-2<CR>==
 nnoremap <silent> <C-Down> :move+<CR>==
@@ -42,7 +48,7 @@ cnoremap <C-K> <C-U>
 cnoremap <C-P> <Up>
 cnoremap <C-N> <Down>
 
-let g:train_musle_memory = 1
+let g:train_musle_memory = 0
 
 if g:train_musle_memory == 1
     nnoremap <left> :bprev<CR>
@@ -78,6 +84,12 @@ map <leader>ew :e %%
 map <leader>es :sp %%
 map <leader>ev :vsp %%
 map <leader>et :tabe %%
+
+inoremap <C-e> <C-o>$
+inoremap <C-a> <C-o>^
+nnoremap ä p=`]
+"nnoremap <leader>k cs()
+nnoremap <silent> <Plug>Dsurround  :<C-U>call <SID>dosurround("(", ")")<CR>
 
 " }}}
 
@@ -259,22 +271,25 @@ endif
 " SYNTASTIC PLUGIN {{{
 " git clone https://github.com/scrooloose/syntastic.git
 
+let g:syntastic_mode_map = {'mode':'passive', 'active_file_types':[], 'passive_file_types':[]}
 let g:syntastic_php_checkers = ['php', 'phpcs', 'phpmd']
-set statusline+=%#warningmsg#
-set statusline+=%{SyntasticStatuslineFlag()}
-set statusline+=%*
+"set statusline+=%#warningmsg#
+"set statusline+=%{SyntasticStatuslineFlag()}
+"set statusline+=%*
 
 let g:syntastic_php_phpcs_args           = "--standard = Zend"
 let g:syntastic_always_populate_loc_list = 1
 let g:syntastic_aggregate_errors         = 1
-let g:syntastic_auto_loc_list            = 0
-let g:syntastic_check_on_open            = 0
+"let g:syntastic_auto_loc_list            = 0
+let g:syntastic_check_on_open            = 1
 let g:syntastic_check_on_wq              = 0
 let g:syntastic_auto_jump                = 1
 let g:syntastic_error_symbol             = "✗"
 let g:syntastic_style_error_symbol       = "✠"
 let g:syntastic_warning_symbol           = "⚠"
 let g:syntastic_style_warning_symbol     = "≈"
+
+nnoremap <leader>E :SyntasticCheck<CR> :SytasticToggleMode<CR>
 " }}}
 
 " VIM-PHPFMT PLUGIN {{{
@@ -562,4 +577,17 @@ let g:indentLine_char = '┆'
 
 " ARGWRAP PLUGIN {{{
 nnoremap <leader>aw :ArgWrap<CR>
+" }}}
+
+"
+" SURROUND PLUGIN {{{
+"
+if isdirectory(expand("~/.vim/bundle/vim-surround/"))
+    function! SurroundIt()
+        silent! normal 0f(f cs()
+    endfunction
+
+    command! Surround :call SurroundIt()
+    nnoremap <leader>c : Surround<CR>
+endif
 " }}}
