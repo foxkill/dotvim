@@ -1,27 +1,35 @@
 [submodule "bundle/ctrlp"]
 	path = bundle/ctrlp
 	url = https://github.com/kien/ctrlp.vim.git
+    ignore = dirty
 [submodule "bundle/colors-smyck"]
 	path = bundle/colors-smyck
 	url = https://github.com/slindberg/vim-colors-smyck.git
+    ignore = dirty
 [submodule "bundle/vim-airline"]
 	path = bundle/vim-airline
 	url = https://github.com/bling/vim-airline.git
+    ignore = dirty
 [submodule "bundle/tagbar"]
 	path = bundle/tagbar
 	url = https://github.com/majutsushi/tagbar.git
+    ignore = dirty
 [submodule "bundle/tabular"]
 	path = bundle/tabular
 	url = https://github.com/godlygeek/tabular.git
+    ignore = dirty
 [submodule "bundle/vim-surround"]
 	path = bundle/vim-surround
 	url = git://github.com/tpope/vim-surround.git
+    ignore = dirty
 [submodule "bundle/ag"]
 	path = bundle/ag
 	url = https://github.com/rking/ag.vim.git
+    ignore = dirty
 [submodule "bundle/syntastic"]
 	path = bundle/syntastic
 	url = https://github.com/scrooloose/syntastic.git
+    ignore = dirty
 [submodule "bundle/tcomment"]
 	path = bundle/tcomment
 	url = https://github.com/vim-scripts/tComment.git
@@ -29,18 +37,23 @@
 [submodule "bundle/tagbar-phpctags"]
 	path = bundle/tagbar-phpctags
 	url = https://github.com/vim-php/tagbar-phpctags.vim.git
+    ignore = dirty
 [submodule "bundle/vim-easymotion"]
 	path = bundle/vim-easymotion
 	url = https://github.com/Lokaltog/vim-easymotion.git
+    ignore = dirty
 [submodule "bundle/delimitMate"]
 	path = bundle/delimitMate
 	url = https://github.com/Raimondi/delimitMate.git
+    ignore = dirty
 [submodule "bundle/neocomplete"]
 	path = bundle/neocomplete
 	url = https://github.com/Shougo/neocomplete.vim.git
+    ignore = dirty
 [submodule "bundle/svnj"]
 	path = bundle/svnj
 	url = https://github.com/juneedahamed/svnj.vim.git
+    ignore = dirty
 [submodule "bundle/vim-phpfmt"]
 	path = bundle/vim-phpfmt
 	url = https://github.com/dericofilho/vim-phpfmt.git
@@ -52,12 +65,15 @@
 [submodule "bundle/ultisnips"]
 	path = bundle/ultisnips
 	url = https://github.com/SirVer/ultisnips.git
+    ignore = dirty
 [submodule "bundle/vim-snippets"]
 	path = bundle/vim-snippets
 	url = https://github.com/honza/vim-snippets.git
+    ignore = dirty
 [submodule "bundle/vim-exchange"]
 	path = bundle/vim-exchange
 	url = git://github.com/tommcdo/vim-exchange.git
+    ignore = dirty
 [submodule "bundle/ctrlp-funky"]
 	path = bundle/ctrlp-funky
 	url = https://github.com/tacahiroy/ctrlp-funky.git
@@ -65,12 +81,15 @@
 [submodule "bundle/vim-multiple-cursors"]
 	path = bundle/vim-multiple-cursors
 	url = https://github.com/terryma/vim-multiple-cursors.git
+    ignore = dirty
 [submodule "bundle/vim-signify"]
 	path = bundle/vim-signify
 	url = https://github.com/mhinz/vim-signify.git
+    ignore = dirty
 [submodule "bundle/indentLine"]
 	path = bundle/indentLine
 	url = https://github.com/Yggdroot/indentLine.git
+    ignore = dirty
 [submodule "bundle/vim-argwrap"]
 	path = bundle/vim-argwrap
 	url = https://github.com/FooSoft/vim-argwrap.git
