@@ -93,18 +93,6 @@ nnoremap <silent> <Plug>Dsurround  :<C-U>call <SID>dosurround("(", ")")<CR>
 
 " }}}
 
-" COLOR SETTINGS {{{
-"
-
-"hi CursorLineNr term=bold ctermfg=Yellow gui=bold guifg=Yellow
-set t_Co=256
-
-highlight ColorColumn ctermbg=LightBlue
-" execute set colorcolumn= . join(range(120,335), ',')
-" call matchadd('ColorColumn', '\%81v', 100)
-
-" }}}
-
 " CSCOPE {{{
 
 if has ("cscope")
@@ -175,8 +163,8 @@ if has ("cscope")
     nmap <C-@><C-@>d :vert scs find d <C-R>=expand("<cword>")<CR><CR>
 endif
 " }}}
-" plugin settings
- " COLORSCHEME:solarized {{{
+
+" COLORSCHEME:solarized {{{
 
 if filereadable(expand("~/.vim/bundle/vim-colors-solarized/colors/solarized.vi"))
     let g:solarized_termcolors=256
@@ -192,6 +180,17 @@ endif
 colorscheme smyck
 " }}}
 
+" COLORSETTING OVERRIDE {{{
+set t_Co=256
+
+hi ColorColumn ctermbg=LightBlue
+hi Folded ctermbg=237 ctermfg=7
+
+"hi CursorLineNr term=bold ctermfg=Yellow gui=bold guifg=Yellow
+" execute set colorcolumn= . join(range(120,335), ',')
+" call matchadd('ColorColumn', '\%81v', 100)
+" }}}
+
 " CTRLP PLUGIN {{{
 " $ cd ~/.vim/bundle
 " $ git clone https://github.com/kien/ctrlp.vim.git
@@ -202,7 +201,7 @@ if isdirectory(expand("~/.vim/bundle/ctrlp/"))
     let g:ctrlp_follow_sym_links    = 1
     let g:ctrlp_reuse_window        = 'startify'
     let g:ctrlp_map                 = '<c-p>'
-    let g:ctrlp_cmd                 = 'CtrlPMRU'
+    let g:ctrlp_cmd                 = 'CtrlP'
     let g:ctrlp_use_caching         = 1
     let g:ctrlp_cache_dir           = $HOME . '/.cache/ctrlp'
     let g:ctrlp_by_mru              = 1
@@ -573,7 +572,7 @@ endif
 let g:indentLine_char = '︙'
 let g:indentLine_char = '│'
 let g:indentLine_char = '┆'
-" }}} 
+" }}}
 
 " ARGWRAP PLUGIN {{{
 nnoremap <leader>aw :ArgWrap<CR>
