@@ -569,6 +569,9 @@ endif
 " }}}
 
 " INDENTLINE PLUGIN {{{
+
+"let g:indentLine_color_gui = '#A4E57E'
+
 let g:indentLine_char = '︙'
 let g:indentLine_char = '│'
 let g:indentLine_char = '┆'
@@ -578,9 +581,7 @@ let g:indentLine_char = '┆'
 nnoremap <leader>aw :ArgWrap<CR>
 " }}}
 
-"
 " SURROUND PLUGIN {{{
-"
 if isdirectory(expand("~/.vim/bundle/vim-surround/"))
     function! SurroundIt()
         silent! normal 0f(f cs()
