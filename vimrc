@@ -122,6 +122,7 @@ set scrolljump=5
 "
 set nowrap                      " Do not wrap long lines
 set autoindent                  " Indent at the same level of the previous line
+set copyindent                  " copy the previous indendation on autoindent
 set smartindent
 set shiftwidth=4                " Use indents of 4 spaces
 set expandtab                   " Tabs are spaces, not tabs
@@ -199,8 +200,11 @@ autocmd cursormoved * set hlsearch
 " }
 
 " autosource
-autocmd! bufwritepost .vimrc source $HOME/.vimrc
-autocmd! bufwritepost .vimrc.local source $HOME/.vimrc.local
+augroup reload_vimrc
+    autocmd!
+    autocmd bufwritepost .vimrc source $HOME/.vimrc
+    autocmd bufwritepost .vimrc.local source $HOME/.vimrc.local
+augroup END
 
 
 " remove trailing spaces when writing php files
