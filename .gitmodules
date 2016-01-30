@@ -99,3 +99,6 @@
 [submodule "bundle/typescript-vim"]
 	path = bundle/typescript-vim
 	url = https://github.com/leafgarland/typescript-vim.git
+[submodule "bundle/vc.vim"]
+	path = bundle/vc.vim
+	url = https://github.com/juneedahamed/vc.vim
