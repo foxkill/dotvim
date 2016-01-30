@@ -196,7 +196,7 @@ hi Folded ctermbg=237 ctermfg=7
 " $ git clone https://github.com/kien/ctrlp.vim.git
 
 if isdirectory(expand("~/.vim/bundle/ctrlp/"))
-    let g:ctrlp_clear_cache_on_exit = 1
+    let g:ctrlp_clear_cache_on_exit = 0
     let g:ctrlp_show_hidden         = 1
     let g:ctrlp_follow_sym_links    = 1
     let g:ctrlp_reuse_window        = 'startify'
