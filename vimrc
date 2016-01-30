@@ -139,8 +139,10 @@ set hidden                      " enable multiple modified buffers
 "set comments=sl:/*,mb:*,elx:*/  " auto format comment blocks
 
 " Remove trailing whitespaces and ^M chars
-autocmd FileType c,cpp,java,go,php,javascript,puppet,python,rust,twig,xml,yml,perl,sql autocmd BufWritePre <buffer> call StripTrailingWhitespace()
-
+augroup trim_whitespace
+    autocmd!
+    autocmd FileType c,cpp,java,go,php,javascript,puppet,python,rust,twig,xml,yml,perl,sql autocmd BufWritePre <buffer> call StripTrailingWhitespace()
+augroup END
 " Strip whitespace {
 function! StripTrailingWhitespace()
     " Preparation: save last search, and cursor position.
@@ -177,7 +179,7 @@ set wildignore+=*/\.svn/*,*/\.git/*
 " key mappings {
 "
 " edit .vimrc quickly
-nnoremap <leader>ev <C-w><C-v><C-l>:e $MYVIMRC<CR>
+nnoremap <leader>ev :tabedit $MYVIMRC<CR>
 
 " fast saves
 nnoremap <leader>w :w!<CR>
