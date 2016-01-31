@@ -179,7 +179,7 @@ set wildignore+=*/\.svn/*,*/\.git/*
 " key mappings {
 "
 " edit .vimrc quickly
-nnoremap <leader>ev :tabedit $MYVIMRC<CR>
+nnoremap <leader>ed :tabedit $MYVIMRC<CR>
 
 " fast saves
 nnoremap <leader>w :w!<CR>
