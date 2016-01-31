@@ -176,8 +176,12 @@ if filereadable(expand("~/.vim/bundle/vim-colors-solarized/colors/solarized.vi")
 endif
 " }}}
 
-" COLORSCHEME:smyck {{{
-colorscheme smyck
+" COLORSCHEME {{{
+if has('gui_running')
+    colorscheme atom-dark
+else
+    colorscheme smyck
+endif
 " }}}
 
 " COLORSETTING OVERRIDE {{{
@@ -309,27 +313,26 @@ end
 let g:php_cs_fixer_verbose = 1
 " }}}
 
-" SVNJ PLUGIN {{{
+" VC PLUGIN {{{
 "
-let g:svnj_allow_leader_mappings = 0
-"let g                   : svnj_trunk_url = ''
-"let g                   : svnj_trunk_url = ''
-map <silent> <leader>bl  : SVNBlame<CR>
-map <silent> <leader>ci  : SVNCommit<CR>
-map <silent> <leader>df  : SVNDiff<CR>
-map <silent> <leader>dfi : SVNDiff!<CR>
-map <silent> <leader>st  : SVNStatus<CR>
-map <silent> <leader>su  : SVNStatus u<CR>
-map <silent> <leader>sq  : SVNStatus u q<CR>
-map <silent> <leader>sc  : SVNStatus .<CR>
-map <silent> <leader>lg  : SVNLog<CR>
-"map <silent> <leader>b  : SVNBrowse<CR>
-"map <silent> <leader>bl : SVNBrowseMyList<CR>
-"map <silent> <leader>br : SVNBrowseRepo<CR>
-"map <silent> <leader>bw : SVNBrowseWorkingCopy<CR>
-"map <silent> <leader>bb : SVNBrowseBookMarks<CR>
-"map <silent> <leader>bf : SVNBrowseBuffer<CR>
-"map <silent> <leader>bm : SVNBrowse<CR>
+let g:vc_allow_leader_mappings = 0
+let g:vc_browse_cache_all = 1
+map <silent> <leader>bl  : VCBlame<CR>
+map <silent> <leader>ci  : VCCommit<CR>
+map <silent> <leader>df  : VCDiff<CR>
+map <silent> <leader>dfi : VCDiff!<CR>
+map <silent> <leader>st  : VCStatus<CR>
+map <silent> <leader>su  : VCStatus u<CR>
+map <silent> <leader>sq  : VCStatus u q<CR>
+map <silent> <leader>sc  : VCStatus .<CR>
+map <silent> <leader>lg  : VCLog<CR>
+"map <silent> <leader>b  : VCBrowse<CR>
+"map <silent> <leader>bl : VCBrowseMyList<CR>
+"map <silent> <leader>br : VCBrowseRepo<CR>
+"map <silent> <leader>bw : VCBrowseWorkingCopy<CR>
+"map <silent> <leader>bb : VCBrowseBookMarks<CR>
+"map <silent> <leader>bf : VCBrowseBuffer<CR>
+"map <silent> <leader>bm : VCBrowse<CR>
 map <silent> <leader>q   : diffoff! <CR>: q<CR>
 " }}}
 
@@ -547,19 +550,19 @@ if isdirectory(expand("~/.vim/bundle/vim-airline/"))
     let g:airline_powerline_fonts                    = 1
     let g:airline#extensions#tabline#enabled         = 1
     let g:airline#extensions#tabline#formatter       = 'unique_tail'
-    let g:airline_theme                              = 'badwolf'
     let g:airline#extensions#tabline#left_sep        = ' '
     let g:airline#extensions#tabline#left_alt_sep    = '¦'
     let g:airline#extensions#tabline#buffer_idx_mode = 1
 
+    if has('gui_running')
+        let g:airline_theme = 'behelit'
+    else
+        let g:airline_theme = 'badwolf'
+    endif
     "let g:airline_left_sep                    = ''
     "let g:airline_right_sep                   = ''
     "let g:airline_section_z                   = ''
 
-
-    if !exists('g:airline_theme')
-        let g:airline_theme = 'solarized'
-    endif
     if !exists('g:airline_powerline_fonts')
         " Use the default set of separators with a few customizations
         let g:airline_left_sep='›'  " Slightly fancier than '>'
