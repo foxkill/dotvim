@@ -7,4 +7,5 @@ set linespace=10
 "set guioptions=-r
 "set guioptions=-L
 "set guioptions=-l
-colorscheme=atom-dark.vim
+set visualbell
+abbrev fbm cd ~/MyVolumes/fb-martin-admin<CR>

@@ -220,6 +220,7 @@ if isdirectory(expand("~/.vim/bundle/ctrlp/"))
     nnoremap <silent> <leader>cT :CtrlPTag<CR>
     nnoremap <silent> <leader>cl :CtrlPLine<CR>
     nnoremap <silent> <leader>b :CtrlPBuffer<CR>
+    nnoremap <silent> <leader>l :CtrlPMRU<CR>
 
 
     let g:ctrlp_custom_ignore = {
@@ -252,8 +253,6 @@ if isdirectory(expand("~/.vim/bundle/ctrlp/"))
     if isdirectory(expand("~/.vim/bundle/ctrlp-funky/"))
         " CtrlP extensions
         let g:ctrlp_extensions = ['funky']
-
-        "funky
     endif
 endif
 

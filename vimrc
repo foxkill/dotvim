@@ -186,6 +186,7 @@ nnoremap <leader>w :w!<CR>
 
 "easy mapping to normal mode
 imap jj <ESC>
+imap kk <ESC>
 "}
 
 "

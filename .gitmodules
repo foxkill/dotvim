@@ -105,3 +105,6 @@
 [submodule "bundle/tsuquyomi"]
 	path = bundle/tsuquyomi
 	url = https://github.com/Quramy/tsuquyomi.git
+[submodule "bundle/vim-autoformat"]
+	path = bundle/vim-autoformat
+	url = https://github.com/Chiel92/vim-autoformat.git
