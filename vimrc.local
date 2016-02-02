@@ -57,9 +57,11 @@ if g:train_musle_memory == 1
     nnoremap <down> :tabprev <CR>
 endif
 
-
 " Find merge conflict markers
 map <leader>fc /\v^[<\|=>]{7}( .*\|$)<CR>
+
+" function yank
+nmap <leader>fy jvaBVy
 
 " Shortcuts
 " Change Working Directory to that of the current file
