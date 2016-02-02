@@ -595,3 +595,9 @@ if isdirectory(expand("~/.vim/bundle/vim-surround/"))
     nnoremap <leader>c : Surround<CR>
 endif
 " }}}
+
+" TYPESCRIPT PLUGIN {{{
+
+let g:tsuquyomi_disable_quickfix = 1
+
+" }}}
